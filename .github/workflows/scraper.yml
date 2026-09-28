@@ -1,0 +1,39 @@
+name: Internet Packages Scraper
+
+on:
+  # اجرای خودکار هر روز ساعت ۶ صبح به وقت تهران (۲:۳۰ UTC)
+  schedule:
+    - cron: '30 2 * * *'
+  
+  # امکان اجرای دستی از پنل GitHub
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 دریافت کد
+        uses: actions/checkout@v4
+
+      - name: 🔧 نصب Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 نصب وابستگی‌ها
+        run: npm install
+
+      - name: 🕷️ اجرای اسکرپر
+        run: npm run scrape
+
+      - name: 💾 ذخیره نتایج در مخزن
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add data.json
+          git diff --staged --quiet || git commit -m "🔄 به‌روزرسانی خودکار داده‌ها - $(date +'%Y-%m-%d %H:%M')"
+          git push
