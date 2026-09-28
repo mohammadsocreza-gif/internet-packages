@@ -2,10 +2,6 @@ const fs = require('fs');
 
 const JINA_READER = 'https://r.jina.ai/';
 
-// ==========================================
-// لیست نجات (Fallback) - دقیق و به‌روز
-// اگر اسکریپت نتواند استخراج کند، این لیست نمایش داده می‌شود
-// ==========================================
 const FALLBACK_DATA = [
     { operator: "ایرانسل", type: "TD-LTE", volume: 600, days: 365, price: 1651050, source: "ایرانسل TD-LTE" },
     { operator: "ایرانسل", type: "TD-LTE", volume: 90, days: 30, price: 259120, source: "ایرانسل TD-LTE" },
@@ -24,8 +20,10 @@ const FALLBACK_DATA = [
 
 const SOURCES = [
     { name: 'ایرانسل همراه', operator: 'ایرانسل', type: 'همراه', url: 'https://irancell.ir/o/1001/mobile-internet-packages' },
+    { name: 'ایرانسل TD-LTE', operator: 'ایرانسل', type: 'TD-LTE', url: 'https://irancell.ir/p/305229/td-lte-internet-packages' },
     { name: 'همراه اول', operator: 'همراه اول', type: 'دائمی', url: 'https://mci.ir/internet-plans' },
-    { name: 'شاتل موبایل', operator: 'شاتل موبایل', type: 'همراه', url: 'https://shatelmobile.ir/plans-tariffs/internet-packages/' }
+    { name: 'شاتل موبایل', operator: 'شاتل موبایل', type: 'همراه', url: 'https://shatelmobile.ir/plans-tariffs/internet-packages/' },
+    { name: 'سامانتل', operator: 'سامانتل', type: 'همراه', url: 'https://samantel.ir/internet-package/' }
 ];
 
 function fa2en(str) {
@@ -34,7 +32,7 @@ function fa2en(str) {
 }
 
 async function scrapeSource(source) {
-    console.log(`🔄 تلاش برای استخراج: ${source.name}...`);
+    console.log(`🔄 در حال خواندن: ${source.name}...`);
     const packages = [];
 
     try {
@@ -45,21 +43,24 @@ async function scrapeSource(source) {
         const text = await response.text();
         const normalizedText = fa2en(text);
         
-        // الگوی جستجو
-        const regex = /(\d+(?:\.\d+)?)\s*(?:گیگابایت|GB)[\s\S]{0,300}?(\d[\d,،\s]*)\s*تومان/gi;
+        const regex = /(\d+(?:\.\d+)?)\s*(?:گیگابایت|GB)[^\n]{0,150}(\d{4,})\s*تومان/gi;
         let match;
         const seen = new Set();
 
         while ((match = regex.exec(normalizedText)) !== null) {
             let volume = parseFloat(match[1].replace(/\//g, '.'));
-            const priceStr = match[2].replace(/[,،\s]/g, '');
-            const price = parseFloat(priceStr);
+            const price = parseFloat(match[2].replace(/[,،\s]/g, ''));
             
             if (volume < 0.1 || price < 1000) continue;
 
-            // فیلتر هوشمند: قیمت هر گیگ باید بین ۱۰۰۰ تا ۵۰۰۰۰ تومان باشد (حذف داده‌های پرت)
             const pricePerGB = price / volume;
             if (pricePerGB < 1000 || pricePerGB > 50000) continue;
+
+            // فیلتر حذف بسته‌های ترکیبی (همراه + ثابت)
+            const contextBefore = normalizedText.substring(Math.max(0, match.index - 150), match.index);
+            if (contextBefore.includes('ثابت') || contextBefore.includes('FMC')) {
+                continue;
+            }
 
             let days = 30;
             const block = match[0];
@@ -75,18 +76,25 @@ async function scrapeSource(source) {
             const key = `${source.operator}-${volume}-${days}-${price}`;
             if (!seen.has(key)) {
                 seen.add(key);
-                packages.push({ operator: source.operator, type: source.type, volume, days, price, source: source.name });
+                packages.push({
+                    operator: source.operator,
+                    type: source.type,
+                    volume: Math.round(volume * 100) / 100,
+                    days: days,
+                    price: Math.round(price),
+                    source: source.name
+                });
             }
         }
         console.log(`   ✅ ${packages.length} بسته معتبر یافت شد.`);
     } catch (error) {
-        console.log(`   ❌ خطا: ${error.message}`);
+        console.log(`   ❌ خطا در ${source.name}: ${error.message}`);
     }
     return packages;
 }
 
 async function main() {
-    console.log('🚀 شروع فرآیند هوشمند...\n');
+    console.log('🚀 شروع استخراج هوشمند...\n');
 
     let allPackages = [];
     for (const source of SOURCES) {
@@ -94,7 +102,6 @@ async function main() {
         allPackages = allPackages.concat(pkgs);
     }
 
-    // حذف تکراری‌ها
     const unique = [];
     const seen = new Set();
     for (const pkg of allPackages) {
@@ -107,18 +114,13 @@ async function main() {
 
     unique.sort((a, b) => (a.price / a.volume) - (b.price / b.volume));
 
-    // ==========================================
-    // منطق نجات (Fail-Safe)
-    // ==========================================
     let finalPackages = unique;
     let status = "موفقیت‌آمیز (زنده)";
 
-    // اگر کمتر از ۵ بسته پیدا کرد، یعنی فایروال جلوی ما را گرفته است
     if (unique.length < 5) {
-        console.log('\n⚠️ هشدار: استخراج زنده ناموفق بود یا داده‌ها ناکافی هستند.');
-        console.log('🛡️ فعال‌سازی حالت نجات: استفاده از لیست تأییدشده برای اطمینان از کارکرد داشبورد.');
+        console.log('\n⚠️ استخراج زنده ناموفق. فعال‌سازی حالت نجات...');
         finalPackages = FALLBACK_DATA;
-        status = "حالت نجات فعال (داده‌های تأییدشده)";
+        status = "حالت نجات (داده‌های تأییدشده)";
     }
 
     const output = {
@@ -129,7 +131,7 @@ async function main() {
     };
 
     fs.writeFileSync('data.json', JSON.stringify(output, null, 2), 'utf8');
-    console.log(`\n🎉 پایان! ${finalPackages.length} بسته در data.json ذخیره شد. (وضعیت: ${status})`);
+    console.log(`\n🎉 پایان! ${finalPackages.length} بسته ذخیره شد. (${status})`);
 }
 
 main().catch(console.error);
