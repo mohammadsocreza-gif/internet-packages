@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقایسه زنده بسته‌های اینترنت</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <style>
+        :root{--p:#2563eb;--bg:#f8fafc;--s:#fff;--t:#1e293b;--b:#e2e8f0;--ok:#10b981}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+        header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--b);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 6px -1px rgba(0,0,0,.05)}
+        h1{font-size:1.2rem;font-weight:700;color:var(--p)}
+        .ctrl{display:flex;gap:6px;flex-wrap:wrap}
+        button{padding:.45rem .9rem;border:1px solid var(--b);border-radius:8px;font-family:inherit;font-weight:600;cursor:pointer;background:var(--s);transition:.2s;font-size:.85rem}
+        button:hover,button.on{background:var(--p);color:#fff;border-color:var(--p)}
+        main{max-width:1200px;margin:1.5rem auto;padding:0 1rem}
+        .bar{background:#eff6ff;border-right:4px solid var(--p);padding:.8rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+        .tc{background:var(--s);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.1);overflow-x:auto}
+        table{width:100%;border-collapse:collapse;min-width:750px}
+        th,td{padding:.8rem 1rem;text-align:right;border-bottom:1px solid var(--b)}
+        th{background:#f1f5f9;font-weight:700;color:#64748b;font-size:.8rem}
+        tr:hover{background:#f8fafc}
+        .best{color:var(--ok);font-weight:800}
+        .bg{display:inline-block;padding:.2rem .6rem;border-radius:999px;font-size:.7rem;font-weight:700}
+        .bg-i{background:#fef3c7;color:#92400e}
+        .bg-m{background:#fee2e2;color:#991b1b}
+        .bg-s{background:#dbeafe;color:#1e40af}
+        .bg-a{background:#dcfce7;color:#166534}
+        .ld{text-align:center;padding:3rem;color:#64748b}
+        @media(max-width:768px){header{flex-direction:column;gap:.8rem;align-items:flex-start}.ctrl{width:100%}button{flex:1;font-size:.75rem}}
+    </style>
+</head>
+<body>
+<header>
+    <h1>📊 مقایسه زنده بسته‌های اینترنت ایران</h1>
+    <div class="ctrl">
+        <button class="on" onclick="F('all',this)">همه</button>
+        <button onclick="F('ایرانسل',this)">ایرانسل</button>
+        <button onclick="F('همراه اول',this)">همراه اول</button>
+        <button onclick="F('شاتل موبایل',this)">شاتل</button>
+        <button onclick="F('سامانتل',this)">سامانتل</button>
+    </div>
+</header>
+<main>
+    <div class="bar">
+        <span>💡 داده‌ها به صورت خودکار از سایت اپراتورها استخراج می‌شوند</span>
+        <span id="upd" style="font-weight:600;color:var(--p)">در حال بارگذاری...</span>
+    </div>
+    <div class="tc">
+        <table>
+            <thead><tr>
+                <th>#</th><th>اپراتور</th><th>نوع</th><th>حجم</th><th>مدت</th><th>قیمت کل</th><th>💰 قیمت هر گیگ</th>
+            </tr></thead>
+            <tbody id="tb"><tr><td colspan="7" class="ld">⏳ در حال دریافت...</td></tr></tbody>
+        </table>
+    </div>
+</main>
+<script>
+let D=[];
+async function L(){
+    try{
+        const r=await fetch('data.json?t='+Date.now());
+        if(!r.ok)throw new Error('data.json یافت نشد');
+        const j=await r.json();
+        D=j.packages||[];
+        const d=new Date(j.lastUpdated);
+        document.getElementById('upd').textContent='✅ آخرین به‌روزرسانی: '+d.toLocaleDateString('fa-IR')+' ساعت '+d.toLocaleTimeString('fa-IR');
+        R(D);
+    }catch(e){
+        document.getElementById('tb').innerHTML='<tr><td colspan="7" style="text-align:center;padding:2rem;color:#ef4444">❌ خطا: '+e.message+'</td></tr>';
+    }
+}
+function R(p){
+    const s=p.map(x=>({...x,ppg:Math.round(x.price/x.volume)})).sort((a,b)=>a.ppg-b.ppg);
+    const tb=document.getElementById('tb');
+    tb.innerHTML='';
+    if(!s.length){tb.innerHTML='<tr><td colspan="7" class="ld">بسته‌ای یافت نشد</td></tr>';return}
+    s.forEach((x,i)=>{
+        const bc=x.operator.includes('همراه اول')?'bg-m':x.operator.includes('شاتل')?'bg-s':x.operator.includes('سامانتل')?'bg-a':'bg-i';
+        const tr=document.createElement('tr');
+        tr.innerHTML=`<td>${i+1}</td><td><span class="bg ${bc}">${x.operator}</span></td><td>${x.type}</td><td><strong>${x.volume}</strong> GB</td><td>${x.days} روز</td><td>${x.price.toLocaleString('fa-IR')} تومان</td><td class="${i===0?'best':''}">${x.ppg.toLocaleString('fa-IR')} تومان ${i===0?'🏆':''}</td>`;
+        tb.appendChild(tr);
+    });
+}
+function F(o,b){
+    document.querySelectorAll('.ctrl button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    R(o==='all'?D:D.filter(x=>x.operator===o));
+}
+L();
+</script>
+</body>
+</html>
