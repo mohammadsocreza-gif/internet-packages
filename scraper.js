@@ -27,27 +27,26 @@ async function scrapeSource(source) {
         const text = await response.text();
         const normalizedText = fa2en(text);
         
-        // الگوی متعادل برای استخراج
-        const regex = /(\d+(?:\.\d+)?)\s*(?:گیگابایت|GB)[^\n]{0,200}(\d{4,})\s*تومان/gi;
+        // الگوی موفق قبلی (همانی که ۹۵ بسته پیدا کرد)
+        const regex = /(\d+(?:\.\d+)?)\s*(?:گیگابایت|GB)[\s\S]{0,300}?(\d[\d,،\s]*)\s*تومان/gi;
         let match;
         const seen = new Set();
 
         while ((match = regex.exec(normalizedText)) !== null) {
             let volume = parseFloat(match[1].replace(/\//g, '.'));
-            const price = parseFloat(match[2].replace(/[,،\s]/g, ''));
+            const priceStr = match[2].replace(/[,،\s]/g, '');
+            const price = parseFloat(priceStr);
             
             if (volume < 0.1 || price < 1000) continue;
 
-            // فیلتر منطقی: قیمت هر گیگ بین ۵۰۰ تا ۱۰۰۰۰۰ تومان
+            // فیلتر منطقی (همان فیلتر موفق قبلی)
             const pricePerGB = price / volume;
-            if (pricePerGB < 500 || pricePerGB > 100000) {
-                continue;
-            }
+            if (pricePerGB < 1000 || pricePerGB > 50000) continue;
 
-            // حذف بسته‌های ترکیبی (اینترنت ثابت)
+            // حذف بسته‌های ترکیبی
             const block = match[0];
-            const contextBefore = normalizedText.substring(Math.max(0, match.index - 100), match.index);
-            if (contextBefore.includes('اینترنت ثابت') || block.includes('FMC')) {
+            const contextBefore = normalizedText.substring(Math.max(0, match.index - 150), match.index);
+            if (contextBefore.includes('ثابت') || contextBefore.includes('FMC')) {
                 continue;
             }
 
@@ -90,7 +89,6 @@ async function main() {
         allPackages = allPackages.concat(pkgs);
     }
 
-    // حذف تکراری‌ها
     const unique = [];
     const seen = new Set();
     for (const pkg of allPackages) {
@@ -114,7 +112,7 @@ async function main() {
     console.log(`\n🎉 پایان! ${unique.length} بسته ذخیره شد.`);
     
     if (unique.length === 0) {
-        console.log('⚠️ هشدار: هیچ بسته‌ای استخراج نشد. داشبورد خالی خواهد بود.');
+        console.log('⚠️ هشدار: هیچ بسته‌ای استخراج نشد.');
     }
 }
 
