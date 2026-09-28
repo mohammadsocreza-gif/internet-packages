@@ -2,22 +2,6 @@ const fs = require('fs');
 
 const JINA_READER = 'https://r.jina.ai/';
 
-const FALLBACK_DATA = [
-    { operator: "ایرانسل", type: "TD-LTE", volume: 600, days: 365, price: 1651050, source: "ایرانسل TD-LTE" },
-    { operator: "ایرانسل", type: "TD-LTE", volume: 90, days: 30, price: 259120, source: "ایرانسل TD-LTE" },
-    { operator: "ایرانسل", type: "TD-LTE", volume: 50, days: 30, price: 167080, source: "ایرانسل TD-LTE" },
-    { operator: "ایرانسل", type: "همراه", volume: 100, days: 120, price: 755000, source: "ایرانسل همراه" },
-    { operator: "ایرانسل", type: "همراه", volume: 50, days: 30, price: 383500, source: "ایرانسل همراه" },
-    { operator: "همراه اول", type: "دائمی", volume: 20, days: 30, price: 115620, source: "همراه اول" },
-    { operator: "همراه اول", type: "دائمی", volume: 10, days: 30, price: 62000, source: "همراه اول" },
-    { operator: "همراه اول", type: "دائمی", volume: 5, days: 30, price: 31620, source: "همراه اول" },
-    { operator: "همراه اول", type: "دائمی", volume: 2, days: 30, price: 18760, source: "همراه اول" },
-    { operator: "شاتل موبایل", type: "همراه", volume: 30, days: 30, price: 165000, source: "شاتل موبایل" },
-    { operator: "شاتل موبایل", type: "همراه", volume: 10, days: 30, price: 71000, source: "شاتل موبایل" },
-    { operator: "سامانتل", type: "همراه", volume: 15, days: 60, price: 66200, source: "سامانتل" },
-    { operator: "سامانتل", type: "همراه", volume: 10, days: 60, price: 52300, source: "سامانتل" }
-];
-
 const SOURCES = [
     { name: 'ایرانسل همراه', operator: 'ایرانسل', type: 'همراه', url: 'https://irancell.ir/o/1001/mobile-internet-packages' },
     { name: 'ایرانسل TD-LTE', operator: 'ایرانسل', type: 'TD-LTE', url: 'https://irancell.ir/p/305229/td-lte-internet-packages' },
@@ -43,7 +27,8 @@ async function scrapeSource(source) {
         const text = await response.text();
         const normalizedText = fa2en(text);
         
-        const regex = /(\d+(?:\.\d+)?)\s*(?:گیگابایت|GB)[^\n]{0,150}(\d{4,})\s*تومان/gi;
+        // الگوی متعادل برای استخراج
+        const regex = /(\d+(?:\.\d+)?)\s*(?:گیگابایت|GB)[^\n]{0,200}(\d{4,})\s*تومان/gi;
         let match;
         const seen = new Set();
 
@@ -53,17 +38,20 @@ async function scrapeSource(source) {
             
             if (volume < 0.1 || price < 1000) continue;
 
+            // فیلتر منطقی: قیمت هر گیگ بین ۵۰۰ تا ۱۰۰۰۰۰ تومان
             const pricePerGB = price / volume;
-            if (pricePerGB < 1000 || pricePerGB > 50000) continue;
+            if (pricePerGB < 500 || pricePerGB > 100000) {
+                continue;
+            }
 
-            // فیلتر حذف بسته‌های ترکیبی (همراه + ثابت)
-            const contextBefore = normalizedText.substring(Math.max(0, match.index - 150), match.index);
-            if (contextBefore.includes('ثابت') || contextBefore.includes('FMC')) {
+            // حذف بسته‌های ترکیبی (اینترنت ثابت)
+            const block = match[0];
+            const contextBefore = normalizedText.substring(Math.max(0, match.index - 100), match.index);
+            if (contextBefore.includes('اینترنت ثابت') || block.includes('FMC')) {
                 continue;
             }
 
             let days = 30;
-            const block = match[0];
             if (block.includes('ساله')) days = 365;
             else if (block.includes('ماهه')) {
                 const m = block.match(/(\d+)\s*ماهه/);
@@ -86,7 +74,7 @@ async function scrapeSource(source) {
                 });
             }
         }
-        console.log(`   ✅ ${packages.length} بسته معتبر یافت شد.`);
+        console.log(`   ✅ ${packages.length} بسته یافت شد.`);
     } catch (error) {
         console.log(`   ❌ خطا در ${source.name}: ${error.message}`);
     }
@@ -94,7 +82,7 @@ async function scrapeSource(source) {
 }
 
 async function main() {
-    console.log('🚀 شروع استخراج هوشمند...\n');
+    console.log('🚀 شروع استخراج (بدون Fallback)...\n');
 
     let allPackages = [];
     for (const source of SOURCES) {
@@ -102,6 +90,7 @@ async function main() {
         allPackages = allPackages.concat(pkgs);
     }
 
+    // حذف تکراری‌ها
     const unique = [];
     const seen = new Set();
     for (const pkg of allPackages) {
@@ -114,24 +103,19 @@ async function main() {
 
     unique.sort((a, b) => (a.price / a.volume) - (b.price / b.volume));
 
-    let finalPackages = unique;
-    let status = "موفقیت‌آمیز (زنده)";
-
-    if (unique.length < 5) {
-        console.log('\n⚠️ استخراج زنده ناموفق. فعال‌سازی حالت نجات...');
-        finalPackages = FALLBACK_DATA;
-        status = "حالت نجات (داده‌های تأییدشده)";
-    }
-
     const output = {
         lastUpdated: new Date().toISOString(),
-        totalPackages: finalPackages.length,
-        packages: finalPackages,
-        scrapeStatus: status
+        totalPackages: unique.length,
+        packages: unique,
+        scrapeStatus: unique.length > 0 ? 'موفقیت‌آمیز (فقط داده‌های زنده)' : 'شکست - هیچ داده‌ای استخراج نشد'
     };
 
     fs.writeFileSync('data.json', JSON.stringify(output, null, 2), 'utf8');
-    console.log(`\n🎉 پایان! ${finalPackages.length} بسته ذخیره شد. (${status})`);
+    console.log(`\n🎉 پایان! ${unique.length} بسته ذخیره شد.`);
+    
+    if (unique.length === 0) {
+        console.log('⚠️ هشدار: هیچ بسته‌ای استخراج نشد. داشبورد خالی خواهد بود.');
+    }
 }
 
 main().catch(console.error);
