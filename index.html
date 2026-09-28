@@ -3,92 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مقایسه زنده بسته‌های اینترنت</title>
+    <title>داشبورد مقایسه بسته‌های اینترنت ایران</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
     <style>
-        :root{--p:#2563eb;--bg:#f8fafc;--s:#fff;--t:#1e293b;--b:#e2e8f0;--ok:#10b981}
-        *{box-sizing:border-box;margin:0;padding:0}
-        body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
-        header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--b);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 6px -1px rgba(0,0,0,.05)}
-        h1{font-size:1.2rem;font-weight:700;color:var(--p)}
-        .ctrl{display:flex;gap:6px;flex-wrap:wrap}
-        button{padding:.45rem .9rem;border:1px solid var(--b);border-radius:8px;font-family:inherit;font-weight:600;cursor:pointer;background:var(--s);transition:.2s;font-size:.85rem}
-        button:hover,button.on{background:var(--p);color:#fff;border-color:var(--p)}
-        main{max-width:1200px;margin:1.5rem auto;padding:0 1rem}
-        .bar{background:#eff6ff;border-right:4px solid var(--p);padding:.8rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
-        .tc{background:var(--s);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.1);overflow-x:auto}
-        table{width:100%;border-collapse:collapse;min-width:750px}
-        th,td{padding:.8rem 1rem;text-align:right;border-bottom:1px solid var(--b)}
-        th{background:#f1f5f9;font-weight:700;color:#64748b;font-size:.8rem}
-        tr:hover{background:#f8fafc}
-        .best{color:var(--ok);font-weight:800}
-        .bg{display:inline-block;padding:.2rem .6rem;border-radius:999px;font-size:.7rem;font-weight:700}
-        .bg-i{background:#fef3c7;color:#92400e}
-        .bg-m{background:#fee2e2;color:#991b1b}
-        .bg-s{background:#dbeafe;color:#1e40af}
-        .bg-a{background:#dcfce7;color:#166534}
-        .ld{text-align:center;padding:3rem;color:#64748b}
-        @media(max-width:768px){header{flex-direction:column;gap:.8rem;align-items:flex-start}.ctrl{width:100%}button{flex:1;font-size:.75rem}}
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f1f5f9;
+            --text-light: #94a3b8;
+            --border: #334155;
+            --shadow: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Vazirmatn', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 40px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Sticky Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background: var(--surface);
+            border-right: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .status-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            background: var(--success);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Search Box */
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            padding-right: 3rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--surface);
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        /* Filter Buttons */
+        .controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            background: var(--surface);
+            color: var(--text);
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .count-badge {
+            background: rgba(0,0,0,0.1);
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .filter-btn.active .count-badge {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Table Container */
+        .table-container {
+            background: var(--surface);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        [data-theme="dark"] thead {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: right;
+            font-weight: 700;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 1rem;
+            text-align: right;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tbody tr {
+            transition: all 0.2s;
+        }
+
+        tbody tr:hover {
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        [data-theme="dark"] tbody tr:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        /* Best Price Highlight */
+        .best-row {
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+        }
+
+        .best-price {
+            color: var(--success);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        /* Operator Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .badge-irancell { background: #fef3c7; color: #92400e; }
+        .badge-mci { background: #fee2e2; color: #991b1b; }
+        .badge-shatel { background: #dbeafe; color: #1e40af; }
+        .badge-samantel { background: #dcfce7; color: #166534; }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { padding: 1rem; }
+            h1 { font-size: 1.2rem; }
+            .header-content { flex-direction: column; align-items: flex-start; }
+            .controls { width: 100%; }
+            .filter-btn { flex: 1; font-size: 0.8rem; padding: 0.5rem; }
+            .status-bar { flex-direction: column; align-items: flex-start; }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
+
 <header>
-    <h1>📊 مقایسه زنده بسته‌های اینترنت ایران</h1>
-    <div class="ctrl">
-        <button class="on" onclick="F('all',this)">همه</button>
-        <button onclick="F('ایرانسل',this)">ایرانسل</button>
-        <button onclick="F('همراه اول',this)">همراه اول</button>
-        <button onclick="F('شاتل موبایل',this)">شاتل</button>
-        <button onclick="F('سامانتل',this)">سامانتل</button>
+    <div class="header-content">
+        <h1>📊 داشبورد مقایسه بسته‌های اینترنت</h1>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span id="themeIcon">🌙</span> حالت تاریک
+        </button>
     </div>
 </header>
+
 <main>
-    <div class="bar">
-        <span>💡 داده‌ها به صورت خودکار از سایت اپراتورها استخراج می‌شوند</span>
-        <span id="upd" style="font-weight:600;color:var(--p)">در حال بارگذاری...</span>
+    <div class="status-bar">
+        <div class="status-info">
+            <span>💡 داده‌ها به صورت خودکار از سایت اپراتورها استخراج می‌شوند</span>
+            <span class="status-badge" id="statusBadge">در حال بارگذاری...</span>
+        </div>
+        <div class="status-info">
+            <span>🕐 آخرین به‌روزرسانی:</span>
+            <strong id="lastUpdated">---</strong>
+        </div>
     </div>
-    <div class="tc">
-        <table>
-            <thead><tr>
-                <th>#</th><th>اپراتور</th><th>نوع</th><th>حجم</th><th>مدت</th><th>قیمت کل</th><th>💰 قیمت هر گیگ</th>
-            </tr></thead>
-            <tbody id="tb"><tr><td colspan="7" class="ld">⏳ در حال دریافت...</td></tr></tbody>
-        </table>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="جستجو در بسته‌ها (مثلاً: ۱۰ گیگ، ایرانسل، ۳۰ روزه)..." oninput="handleSearch()">
+    </div>
+
+    <div class="controls" id="filterButtons">
+        <button class="filter-btn active" onclick="filterData('all', this)">
+            همه <span class="count-badge" id="count-all">0</span>
+        </button>
+        <button class="filter-btn" onclick="filterData('ایرانسل', this)">
+            ایرانسل <span class="count-badge" id="count-irancell">0</span>
+        </button>
+        <button class="filter-btn" onclick="filterData('همراه اول', this)">
+            همراه اول <span class="count-badge" id="count-mci">0</span>
+        </button>
+        <button class="filter-btn" onclick="filterData('شاتل موبایل', this)">
+            شاتل <span class="count-badge" id="count-shatel">0</span>
+        </button>
+        <button class="filter-btn" onclick="filterData('سامانتل', this)">
+            سامانتل <span class="count-badge" id="count-samantel">0</span>
+        </button>
+    </div>
+
+    <div class="table-container">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>رتبه</th>
+                        <th>اپراتور</th>
+                        <th>نوع</th>
+                        <th>حجم</th>
+                        <th>مدت اعتبار</th>
+                        <th>قیمت کل</th>
+                        <th>💰 قیمت هر گیگ</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr><td colspan="7" class="loading">در حال دریافت داده‌ها...</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
+
 <script>
-let D=[];
-async function L(){
-    try{
-        const r=await fetch('data.json?t='+Date.now());
-        if(!r.ok)throw new Error('data.json یافت نشد');
-        const j=await r.json();
-        D=j.packages||[];
-        const d=new Date(j.lastUpdated);
-        document.getElementById('upd').textContent='✅ آخرین به‌روزرسانی: '+d.toLocaleDateString('fa-IR')+' ساعت '+d.toLocaleTimeString('fa-IR');
-        R(D);
-    }catch(e){
-        document.getElementById('tb').innerHTML='<tr><td colspan="7" style="text-align:center;padding:2rem;color:#ef4444">❌ خطا: '+e.message+'</td></tr>';
+    let allPackages = [];
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    // تبدیل اعداد به فارسی
+    function toPersianNum(num) {
+        return num.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
     }
-}
-function R(p){
-    const s=p.map(x=>({...x,ppg:Math.round(x.price/x.volume)})).sort((a,b)=>a.ppg-b.ppg);
-    const tb=document.getElementById('tb');
-    tb.innerHTML='';
-    if(!s.length){tb.innerHTML='<tr><td colspan="7" class="ld">بسته‌ای یافت نشد</td></tr>';return}
-    s.forEach((x,i)=>{
-        const bc=x.operator.includes('همراه اول')?'bg-m':x.operator.includes('شاتل')?'bg-s':x.operator.includes('سامانتل')?'bg-a':'bg-i';
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td>${i+1}</td><td><span class="bg ${bc}">${x.operator}</span></td><td>${x.type}</td><td><strong>${x.volume}</strong> GB</td><td>${x.days} روز</td><td>${x.price.toLocaleString('fa-IR')} تومان</td><td class="${i===0?'best':''}">${x.ppg.toLocaleString('fa-IR')} تومان ${i===0?'🏆':''}</td>`;
-        tb.appendChild(tr);
-    });
-}
-function F(o,b){
-    document.querySelectorAll('.ctrl button').forEach(x=>x.classList.remove('on'));
-    b.classList.add('on');
-    R(o==='all'?D:D.filter(x=>x.operator===o));
-}
-L();
+
+    // فرمت کردن اعداد با کاما
+    function formatNumber(num) {
+        return toPersianNum(num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    }
+
+    // تبدیل تاریخ میلادی به شمسی
+    function toPersianDate(dateString) {
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat('fa-IR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        }).format(date);
+    }
+
+    // دریافت کلاس badge بر اساس اپراتور
+    function getBadgeClass(operator) {
+        if (operator.includes('همراه اول')) return 'badge-mci';
+        if (operator.includes('شاتل')) return 'badge-shatel';
+        if (operator.includes('سامانتل')) return 'badge-samantel';
+        return 'badge-irancell';
+    }
+
+    // بارگذاری داده‌ها
+    async function loadData() {
+        try {
+            const response = await fetch('data.json?t=' + Date.now());
+            if (!response.ok) throw new Error('فایل data.json یافت نشد');
+            
+            const data = await response.json();
+            allPackages = data.packages || [];
+            
+            // به‌روزرسانی وضعیت
+            document.getElementById('statusBadge').textContent = data.scrapeStatus || 'موفقیت‌آمیز';
+            document.getElementById('lastUpdated').textContent = toPersianDate(data.lastUpdated);
+            
+            // به‌روزرسانی تعداد بسته‌ها
+            updateCounts();
+            
+            // نمایش جدول
+            renderTable(allPackages);
+            
+        } catch (error) {
+            console.error(error);
+            document.getElementById('tableBody').innerHTML = `
+                <tr><td colspan="7" class="empty-state">
+                    <div class="empty-state-icon">❌</div>
+                    <div>خطا در دریافت داده‌ها</div>
+                    <small>${error.message}</small>
+                </td></tr>
+            `;
+        }
+    }
+
+    // به‌روزرسانی تعداد بسته‌ها در دکمه‌های فیلتر
+    function updateCounts() {
+        document.getElementById('count-all').textContent = toPersianNum(allPackages.length);
+        document.getElementById('count-irancell').textContent = toPersianNum(allPackages.filter(p => p.operator === 'ایرانسل').length);
+        document.getElementById('count-mci').textContent = toPersianNum(allPackages.filter(p => p.operator === 'همراه اول').length);
+        document.getElementById('count-shatel').textContent = toPersianNum(allPackages.filter(p => p.operator === 'شاتل موبایل').length);
+        document.getElementById('count-samantel').textContent = toPersianNum(allPackages.filter(p => p.operator === 'سامانتل').length);
+    }
+
+    // محاسبه و مرتب‌سازی بسته‌ها
+    function calculateAndSort(packages) {
+        return packages.map(pkg => ({
+            ...pkg,
+            pricePerGB: Math.round(pkg.price / pkg.volume)
+        })).sort((a, b) => a.pricePerGB - b.pricePerGB);
+    }
+
+    // نمایش جدول
+    function renderTable(packages) {
+        const sortedPackages = calculateAndSort(packages);
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+
+        if (sortedPackages.length === 0) {
+            tbody.innerHTML = `
+                <tr><td colspan="7" class="empty-state">
+                    <div class="empty-state-icon">🔍</div>
+                    <div>بسته‌ای یافت نشد</div>
+                </td></tr>
+            `;
+            return;
+        }
+
+        sortedPackages.forEach((pkg, index) => {
+            const row = document.createElement('tr');
+            const isBest = index === 0;
+            const badgeClass = getBadgeClass(pkg.operator);
+            
+            if (isBest) row.classList.add('best-row');
+            
+            row.innerHTML = `
+                <td>${toPersianNum(index + 1)}</td>
+                <td><span class="badge ${badgeClass}">${pkg.operator}</span></td>
+                <td>${pkg.type}</td>
+                <td><strong>${toPersianNum(pkg.volume)}</strong> گیگابایت</td>
+                <td>${toPersianNum(pkg.days)} روزه</td>
+                <td>${formatNumber(pkg.price)} تومان</td>
+                <td class="${isBest ? 'best-price' : ''}">
+                    ${formatNumber(pkg.pricePerGB)} تومان
+                    ${isBest ? '🏆' : ''}
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    // فیلتر کردن داده‌ها
+    function filterData(operator, btnElement) {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+        currentFilter = operator;
+        applyFilters();
+    }
+
+    // جستجو
+    function handleSearch() {
+        searchQuery = document.getElementById('searchInput').value.toLowerCase();
+        applyFilters();
+    }
+
+    // اعمال فیلترها و جستجو
+    function applyFilters() {
+        let filtered = allPackages;
+
+        // فیلتر اپراتور
+        if (currentFilter !== 'all') {
+            filtered = filtered.filter(pkg => pkg.operator === currentFilter);
+        }
+
+        // فیلتر جستجو
+        if (searchQuery) {
+            filtered = filtered.filter(pkg => {
+                const searchText = `${pkg.operator} ${pkg.type} ${pkg.volume} ${pkg.days} ${pkg.price}`.toLowerCase();
+                return searchText.includes(searchQuery);
+            });
+        }
+
+        renderTable(filtered);
+    }
+
+    // تغییر تم
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        
+        const icon = document.getElementById('themeIcon');
+        const button = document.querySelector('.theme-toggle');
+        
+        if (newTheme === 'dark') {
+            icon.textContent = '☀️';
+            button.innerHTML = '<span id="themeIcon">☀️</span> حالت روشن';
+        } else {
+            icon.textContent = '🌙';
+            button.innerHTML = '<span id="themeIcon">🌙</span> حالت تاریک';
+        }
+        
+        localStorage.setItem('theme', newTheme);
+    }
+
+    // بارگذاری تم ذخیره‌شده
+    function loadTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.querySelector('.theme-toggle').innerHTML = '<span id="themeIcon">☀️</span> حالت روشن';
+        }
+    }
+
+    // اجرای اولیه
+    loadTheme();
+    loadData();
 </script>
+
 </body>
 </html>
