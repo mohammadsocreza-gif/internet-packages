@@ -1,13 +1,253 @@
 {
-  "lastUpdated": "2026-10-23T03:06:22.598Z",
-  "totalPackages": 7,
+  "lastUpdated": "2026-10-24T03:03:16.491Z",
+  "totalPackages": 81,
   "packages": [
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 5,
+      "days": 3,
+      "price": 20100,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 40,
+      "days": 60,
+      "price": 209300,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 5,
+      "days": 7,
+      "price": 27800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 1,
+      "price": 11600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 30,
+      "days": 30,
+      "price": 194600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 7,
+      "price": 69300,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 100,
+      "days": 90,
+      "price": 697200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 7,
+      "days": 30,
+      "price": 48860,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 15,
+      "price": 71200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 1,
+      "price": 14400,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 1,
+      "price": 15200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 30,
+      "price": 79800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 4,
+      "days": 30,
+      "price": 32100,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 5,
+      "days": 30,
+      "price": 40880,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 16600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 7,
+      "price": 16600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 3,
+      "price": 16600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 90,
+      "price": 84800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 5,
+      "days": 7,
+      "price": 42500,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 6,
+      "days": 30,
+      "price": 55100,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 20,
+      "days": 180,
+      "price": 191800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 30,
+      "price": 99400,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 4,
+      "days": 7,
+      "price": 40800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 15,
+      "price": 21100,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 100,
+      "days": 30,
+      "price": 1057000,
+      "source": "همراه اول"
+    },
     {
       "operator": "همراه اول",
       "type": "دائمی",
       "volume": 4,
       "days": 30,
       "price": 42470,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 80,
+      "days": 30,
+      "price": 858900,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 50,
+      "days": 30,
+      "price": 536900,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 60,
+      "days": 30,
+      "price": 644700,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 45,
+      "days": 30,
+      "price": 484120,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 3,
+      "days": 30,
+      "price": 32870,
       "source": "همراه اول"
     },
     {
@@ -29,9 +269,121 @@
     {
       "operator": "همراه اول",
       "type": "دائمی",
+      "volume": 30,
+      "days": 30,
+      "price": 359100,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 6,
+      "days": 30,
+      "price": 73340,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 30,
+      "price": 123200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 3.5,
+      "days": 30,
+      "price": 43820,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 5,
+      "days": 30,
+      "price": 62660,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 26400,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 1,
+      "price": 26400,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 90,
+      "price": 137200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 2,
+      "days": 30,
+      "price": 27590,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
       "volume": 2.5,
       "days": 30,
       "price": 34520,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 4,
+      "days": 30,
+      "price": 56560,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 350,
+      "days": 30,
+      "price": 4984000,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 3,
+      "price": 28700,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 15,
+      "price": 29600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 2.5,
+      "days": 30,
+      "price": 38500,
       "source": "همراه اول"
     },
     {
@@ -43,11 +395,67 @@
       "source": "همراه اول"
     },
     {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 32500,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 90,
+      "price": 163800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 7,
+      "price": 33100,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 3,
+      "days": 30,
+      "price": 50450,
+      "source": "همراه اول"
+    },
+    {
       "operator": "همراه اول",
       "type": "دائمی",
       "volume": 1,
       "days": 30,
       "price": 16980,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 35700,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 15,
+      "price": 36400,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 2,
+      "days": 30,
+      "price": 37180,
       "source": "همراه اول"
     },
     {
@@ -57,6 +465,190 @@
       "days": 30,
       "price": 28930,
       "source": "همراه اول"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 1.5,
+      "days": 30,
+      "price": 30530,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 43400,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 1,
+      "price": 43500,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 43900,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 90,
+      "price": 226800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 20,
+      "days": 90,
+      "price": 465600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 49000,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 3,
+      "price": 49500,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 180,
+      "price": 254800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 7,
+      "price": 51800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "همراه اول",
+      "type": "دائمی",
+      "volume": 1,
+      "days": 30,
+      "price": 27870,
+      "source": "همراه اول"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 1,
+      "price": 58300,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 15,
+      "price": 58800,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 30,
+      "price": 348480,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 70400,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 180,
+      "price": 355600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 90,
+      "price": 372480,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 90,
+      "price": 375200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 7,
+      "price": 76360,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 7,
+      "price": 84360,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 90,
+      "price": 93200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 180,
+      "price": 487200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 30,
+      "price": 495600,
+      "source": "شاتل موبایل"
     }
   ],
   "scrapeStatus": "موفقیت‌آمیز (فقط داده‌های زنده)"
