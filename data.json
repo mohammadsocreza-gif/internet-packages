@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-30T08:55:34.533Z",
+  "lastUpdated": "2026-10-31T08:46:29.742Z",
   "totalPackages": 62,
   "packages": [
     {
@@ -334,6 +334,14 @@
       "operator": "شاتل موبایل",
       "type": "همراه",
       "volume": 2,
+      "days": 7,
+      "price": 41000,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
       "days": 30,
       "price": 43400,
       "source": "شاتل موبایل"
@@ -365,17 +373,17 @@
     {
       "operator": "شاتل موبایل",
       "type": "همراه",
-      "volume": 20,
-      "days": 90,
-      "price": 465600,
+      "volume": 2,
+      "days": 30,
+      "price": 49000,
       "source": "شاتل موبایل"
     },
     {
       "operator": "شاتل موبایل",
       "type": "همراه",
-      "volume": 2,
-      "days": 30,
-      "price": 49000,
+      "volume": 20,
+      "days": 90,
+      "price": 493000,
       "source": "شاتل موبایل"
     },
     {
@@ -423,7 +431,23 @@
       "type": "همراه",
       "volume": 10,
       "days": 30,
-      "price": 348480,
+      "price": 309000,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 90,
+      "price": 337000,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 7,
+      "price": 68000,
       "source": "شاتل موبایل"
     },
     {
@@ -447,31 +471,7 @@
       "type": "همراه",
       "volume": 10,
       "days": 90,
-      "price": 372480,
-      "source": "شاتل موبایل"
-    },
-    {
-      "operator": "شاتل موبایل",
-      "type": "همراه",
-      "volume": 10,
-      "days": 90,
       "price": 375200,
-      "source": "شاتل موبایل"
-    },
-    {
-      "operator": "شاتل موبایل",
-      "type": "همراه",
-      "volume": 2,
-      "days": 7,
-      "price": 76360,
-      "source": "شاتل موبایل"
-    },
-    {
-      "operator": "شاتل موبایل",
-      "type": "همراه",
-      "volume": 2,
-      "days": 7,
-      "price": 84360,
       "source": "شاتل موبایل"
     },
     {
