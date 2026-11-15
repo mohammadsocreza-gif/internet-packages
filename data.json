@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-14T09:19:10.739Z",
-  "totalPackages": 117,
+  "lastUpdated": "2026-11-15T09:50:00.726Z",
+  "totalPackages": 121,
   "packages": [
     {
       "operator": "ایرانسل",
@@ -245,14 +245,6 @@
     {
       "operator": "شاتل موبایل",
       "type": "همراه",
-      "volume": 30,
-      "days": 30,
-      "price": 194600,
-      "source": "شاتل موبایل"
-    },
-    {
-      "operator": "شاتل موبایل",
-      "type": "همراه",
       "volume": 10,
       "days": 7,
       "price": 69300,
@@ -397,6 +389,14 @@
     {
       "operator": "شاتل موبایل",
       "type": "همراه",
+      "volume": 20,
+      "days": 30,
+      "price": 194600,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
       "volume": 10,
       "days": 30,
       "price": 99400,
@@ -413,9 +413,25 @@
     {
       "operator": "شاتل موبایل",
       "type": "همراه",
+      "volume": 12,
+      "days": 30,
+      "price": 123200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
       "volume": 2,
       "days": 15,
       "price": 21100,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 30,
+      "days": 30,
+      "price": 317000,
       "source": "شاتل موبایل"
     },
     {
@@ -491,6 +507,14 @@
       "source": "همراه اول"
     },
     {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 30,
+      "price": 116000,
+      "source": "شاتل موبایل"
+    },
+    {
       "operator": "ایرانسل",
       "type": "همراه",
       "volume": 2.5,
@@ -521,14 +545,6 @@
       "days": 30,
       "price": 73340,
       "source": "ایرانسل همراه"
-    },
-    {
-      "operator": "شاتل موبایل",
-      "type": "همراه",
-      "volume": 10,
-      "days": 30,
-      "price": 123200,
-      "source": "شاتل موبایل"
     },
     {
       "operator": "ایرانسل",
@@ -763,6 +779,14 @@
       "source": "شاتل موبایل"
     },
     {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 10,
+      "days": 30,
+      "price": 211000,
+      "source": "شاتل موبایل"
+    },
+    {
       "operator": "ایرانسل",
       "type": "همراه",
       "volume": 2,
@@ -920,6 +944,14 @@
       "volume": 2,
       "days": 90,
       "price": 93200,
+      "source": "شاتل موبایل"
+    },
+    {
+      "operator": "شاتل موبایل",
+      "type": "همراه",
+      "volume": 2,
+      "days": 30,
+      "price": 96000,
       "source": "شاتل موبایل"
     },
     {
