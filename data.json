@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-27T11:19:29.504Z",
-  "totalPackages": 121,
+  "lastUpdated": "2026-11-28T10:47:55.628Z",
+  "totalPackages": 98,
   "packages": [
     {
       "operator": "ایرانسل",
@@ -9,22 +9,6 @@
       "days": 30,
       "price": 154000,
       "source": "ایرانسل همراه"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 300,
-      "days": 30,
-      "price": 319150,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 200,
-      "days": 30,
-      "price": 225980,
-      "source": "ایرانسل TD-LTE"
     },
     {
       "operator": "ایرانسل",
@@ -41,14 +25,6 @@
       "days": 30,
       "price": 6150,
       "source": "ایرانسل همراه"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 100,
-      "days": 30,
-      "price": 132810,
-      "source": "ایرانسل TD-LTE"
     },
     {
       "operator": "ایرانسل",
@@ -83,108 +59,12 @@
       "source": "ایرانسل همراه"
     },
     {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 100,
-      "days": 30,
-      "price": 319150,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 80,
-      "days": 30,
-      "price": 265630,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 60,
-      "days": 30,
-      "price": 214080,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 500,
-      "days": 180,
-      "price": 1833720,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 600,
-      "days": 365,
-      "price": 2311470,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 300,
-      "days": 180,
-      "price": 1195370,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
       "operator": "شاتل موبایل",
       "type": "همراه",
       "volume": 5,
       "days": 3,
       "price": 20100,
       "source": "شاتل موبایل"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 90,
-      "days": 30,
-      "price": 362760,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 240,
-      "days": 90,
-      "price": 1022910,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 400,
-      "days": 365,
-      "price": 1794070,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 50,
-      "days": 30,
-      "price": 233910,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 150,
-      "days": 180,
-      "price": 717620,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 120,
-      "days": 90,
-      "price": 584800,
-      "source": "ایرانسل TD-LTE"
     },
     {
       "operator": "شاتل موبایل",
@@ -195,44 +75,12 @@
       "source": "شاتل موبایل"
     },
     {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 200,
-      "days": 365,
-      "price": 1050670,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 100,
-      "days": 180,
-      "price": 531270,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
       "operator": "شاتل موبایل",
       "type": "همراه",
       "volume": 5,
       "days": 7,
       "price": 27800,
       "source": "شاتل موبایل"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 60,
-      "days": 90,
-      "price": 340970,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 30,
-      "days": 30,
-      "price": 172460,
-      "source": "ایرانسل TD-LTE"
     },
     {
       "operator": "شاتل موبایل",
@@ -275,14 +123,6 @@
       "source": "شاتل موبایل"
     },
     {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 15,
-      "days": 30,
-      "price": 109030,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
       "operator": "شاتل موبایل",
       "type": "همراه",
       "volume": 2,
@@ -305,14 +145,6 @@
       "days": 30,
       "price": 32100,
       "source": "شاتل موبایل"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 10,
-      "days": 30,
-      "price": 82460,
-      "source": "ایرانسل TD-LTE"
     },
     {
       "operator": "شاتل موبایل",
@@ -339,14 +171,6 @@
       "source": "شاتل موبایل"
     },
     {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 14,
-      "days": 7,
-      "price": 116950,
-      "source": "ایرانسل TD-LTE"
-    },
-    {
       "operator": "شاتل موبایل",
       "type": "همراه",
       "volume": 10,
@@ -369,14 +193,6 @@
       "days": 30,
       "price": 55100,
       "source": "شاتل موبایل"
-    },
-    {
-      "operator": "ایرانسل",
-      "type": "TD-LTE",
-      "volume": 7,
-      "days": 7,
-      "price": 66400,
-      "source": "ایرانسل TD-LTE"
     },
     {
       "operator": "شاتل موبایل",
